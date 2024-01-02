@@ -31,7 +31,7 @@ SOFTWARE.
 
 extern const __attribute__((aligned(4))) uint8_t firmware[];
 
-uint32_t offset;
+static uint32_t offset;
 
 static void __time_critical_func(callback)(uint gpio, uint32_t events) {
     if (events & GPIO_IRQ_EDGE_FALL) {
