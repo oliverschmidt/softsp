@@ -1,2 +1,3 @@
-# grappler-plus
-Grappler+
+# Grappler+
+
+This project is based on [A2Pico](https://github.com/oliverschmidt/a2pico).
