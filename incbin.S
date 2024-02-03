@@ -3,4 +3,4 @@
 .type firmware, %object
 .balign 4
 firmware:
-.incbin "../grappler-plus.rom"
+.incbin "../DIYSPFIRM.BIN"

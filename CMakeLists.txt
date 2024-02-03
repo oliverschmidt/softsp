@@ -1,4 +1,4 @@
-set(PROJECT_NAME Grappler-Plus)
+set(PROJECT_NAME softSP)
 
 cmake_minimum_required(VERSION 3.12)
 include(pico_sdk_import.cmake)
@@ -9,7 +9,7 @@ add_executable(${PROJECT_NAME})
 pico_add_extra_outputs(${PROJECT_NAME})
 
 set_source_files_properties(incbin.S
-        OBJECT_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/grappler-plus.rom
+        OBJECT_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/DIYSPFIRM.BIN
         )
 
 include(FetchContent)
