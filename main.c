@@ -33,8 +33,8 @@ extern const __attribute__((aligned(4))) uint8_t firmware[];
 
 static uint32_t offset;
 
-static void __time_critical_func(callback)(uint gpio, uint32_t events) {
-    if (events & GPIO_IRQ_EDGE_FALL) {
+static void __time_critical_func(reset)(bool asserted) {
+    if (asserted) {
         offset = 0x000;
     }
 }
@@ -43,7 +43,7 @@ void __time_critical_func(main)(void) {
 
     a2pico_init(pio0);
 
-    a2pico_resetcallback(&callback);
+    a2pico_resethandler(&reset);
 
 #ifdef PICO_DEFAULT_LED_PIN
     gpio_init(PICO_DEFAULT_LED_PIN);
