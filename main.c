@@ -31,7 +31,7 @@ SOFTWARE.
 
 extern const __attribute__((aligned(4))) uint8_t firmware[];
 
-static uint32_t offset;
+static volatile uint32_t offset;
 
 static void __time_critical_func(reset)(bool asserted) {
     if (asserted) {
