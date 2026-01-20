@@ -26,6 +26,7 @@ SOFTWARE.
 
 #include <stdio.h>
 #include <pico/stdlib.h>
+#include <hardware/clocks.h>
 
 #include <a2pico.h>
 
@@ -40,6 +41,7 @@ static void __time_critical_func(reset)(bool asserted) {
 }
 
 void __time_critical_func(main)(void) {
+    set_sys_clock_khz(200000, false);
 
     a2pico_init(pio0);
 
