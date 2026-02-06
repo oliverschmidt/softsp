@@ -30,7 +30,7 @@ SOFTWARE.
 
 #include <a2pico.h>
 
-extern const __attribute__((aligned(4))) uint8_t firmware[];
+extern __attribute__((aligned(4))) uint8_t firmware[];
 
 static volatile uint32_t offset;
 
@@ -38,6 +38,7 @@ static void __time_critical_func(reset)(bool asserted) {
     if (asserted) {
         offset = 0x000;
     }
+    firmware[0x007] = 0x3C;  // Identify as Disk II
 }
 
 void __time_critical_func(main)(void) {
@@ -79,6 +80,7 @@ void __time_critical_func(main)(void) {
             }
             else if (io) {  // IOSEL
                 a2pico_putdata(pio0, firmware[addr & 0x0FF]);
+                firmware[0x007] = 0x00;  // Identify as SmartPort
             }
         }
 
