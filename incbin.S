@@ -3,4 +3,4 @@
 .type firmware, %object
 .balign 4
 firmware:
-.incbin "../DIYSPFIRM.BIN"
+.incbin "ProtocolConverter/src/SoftSP-Grappler_S6.bin"
