@@ -44,21 +44,19 @@ static void __time_critical_func(reset)(bool asserted) {
 void __time_critical_func(main)(void) {
     set_sys_clock_khz(200000, false);
 
-    a2pico_init(pio0);
+    a2pico_init();
 
     a2pico_resethandler(&reset);
 
-#ifdef PICO_DEFAULT_LED_PIN
     gpio_init(PICO_DEFAULT_LED_PIN);
     gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
-#endif
 
     while (true) {
-        uint32_t pico = a2pico_getaddr(pio0);
+        uint32_t pico = a2pico_getaddr();
         uint32_t addr = pico & 0x0FFF;
         uint32_t io   = pico & 0x0F00;  // IOSTRB or IOSEL
         uint32_t strb = pico & 0x0800;  // IOSTRB
-        uint32_t read = pico & 0x1000;  // R/W
+        uint32_t read = pico & RW_BIT;  // R/W
 
         if (strb) {  // IOSTRB
             if ((addr & 0xFF0) == 0xFF0) {  
@@ -75,17 +73,15 @@ void __time_critical_func(main)(void) {
         if (read) {
             if (strb) {  // IOSTRB
                 if (offset) {
-                    a2pico_putdata(pio0, firmware[addr & offset]);
+                    a2pico_putdata(firmware[addr & offset]);
                 }
             }
             else if (io) {  // IOSEL
-                a2pico_putdata(pio0, firmware[addr & 0x0FF]);
+                a2pico_putdata(firmware[addr & 0x0FF]);
                 firmware[0x007] = 0x00;  // Identify as SmartPort
             }
         }
 
-#ifdef PICO_DEFAULT_LED_PIN
         gpio_put(PICO_DEFAULT_LED_PIN, offset);
-#endif
     }
 }
