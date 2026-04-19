@@ -9,6 +9,6 @@ The [DIYSP firmware](https://web.archive.org/web/20250118171322/http://www.mfa2l
 That firmware is intended for a [Grappler+ Printer Interface](https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Interface%20Cards/Parallel/Orange%20Micro%20Grappler%20plus%20Printer%20Interface/).
 This project therefore emulates the ROM of that very interface.
 
-However, this project goes beyond the capabilities of both commercially manufactured and DIY softSP cards in one key aspect: It enables autostart from the softSP card in an Apple ][+ and an unenhanced Apple //e. These machines do not normally autostart from the softSP card (or any SmartPort card).
+However, this project goes beyond the capabilities of both commercially manufactured and DIY softSP cards in one key aspect: It enables autostart from the softSP card in an Apple ][+ and an unenhanced Apple //e. These machines do not normally autostart from the softSP card (or any SmartPort card). Please note that this feature is limited to cold starts and does not apply to software-initiated reboots.
 
 Therefore, it is recommended on all machines to install the **A2Pico in slot 7** to enable autostart from this instead of the Disk II controller card.
